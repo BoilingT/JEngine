@@ -32,7 +32,7 @@ public class Game extends JEngine {
         getCanvas().draw_queue.add(rocket);
 
         /*ball = new BouncyBall(350-50, 0, 50);
-        ball.setAcceleration(new Vector(10, 1000, 0));
+        ball.setAcceleration(new Vector(20.f, 10, 0));
         ball.setEventHandler(eventHandler);
         ball.init();
         getCanvas().draw_queue.add(ball);*/
