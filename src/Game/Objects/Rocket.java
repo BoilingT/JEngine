@@ -99,7 +99,7 @@ public class Rocket extends GameObject {
         if(transform.position().getY() > groundLevel+1) transform.position().setY(groundLevel);
         transform.position().setX(transform.position().getX() + velocity.getX() * DeltaTime * SI_METER);
         transform.position().setY(transform.position().getY() - velocity.getY() * DeltaTime * SI_METER);
-        rect.setFrame(transform.position().getX(), transform.position().getY(), transform.scale().getX(), transform.scale().getY());
+        rect.setRect(transform.position().getX(), transform.position().getY(), transform.scale().getX(), transform.scale().getY());
     }
 
     public void setGroundLevel(double level){

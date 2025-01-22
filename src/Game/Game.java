@@ -11,30 +11,31 @@ import java.util.ArrayList;
 
 public class Game extends JEngine {
 
-    private final ArrayList<GameObject> gameObjects;
+    private final ArrayList<IGameObject> gameObjects;
 
     public Game(){
         super();
         System.out.println("Game Initialized");
-        SetFixedDeltaTime(500);
+        SetFixedDeltaTime(1000);
 
         gameObjects = new ArrayList<>();
     }
 
     public void Init(){
-        GameObject ground = new Ground(new Vector(0,600,0), Color.GRAY);
+        Ground ground = new Ground(new Vector(0,600,0), Color.GRAY);
         ground.getTransform().scale().set(700, 100, 0);
 
-        GameObject rocket = new Rocket(new Vector(0, 100, 0));
+        Rocket rocket = new Rocket(new Vector(0, 100, 0));
         rocket.getTransform().scale().set(100, 100, 0);
 
-        /*ball = new BouncyBall(350-50, 0, 50);
-        ball.setAcceleration(new Vector(20.f, 10, 0));*/
+        BouncyBall ball = new BouncyBall(350-50, 0, 50);
+        ball.setAcceleration(new Vector(20.f, 10, 0));
 
         gameObjects.add(ground);
         gameObjects.add(rocket);
+        //gameObjects.add(ball);
 
-        for(GameObject obj : gameObjects){
+        for(IGameObject obj : gameObjects){
             obj.init();
             obj.setEventHandler(eventHandler);
             getCanvas().draw_queue.add(obj);
