@@ -1,7 +1,7 @@
 package JEngine.Objects;
 
 import JEngine.Events.EventHandler;
-import JEngine.Math.Transform;
+import Math.Transform;
 
 import java.awt.*;
 

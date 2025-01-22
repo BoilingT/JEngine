@@ -2,8 +2,8 @@ package Game.Objects;
 
 import JEngine.Events.EventHandler;
 import JEngine.Objects.GameObject;
-import JEngine.Math.Transform;
-import JEngine.Math.Vector;
+import Math.Transform;
+import Math.Vector;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

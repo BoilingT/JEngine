@@ -1,4 +1,4 @@
-package JEngine.Math;
+package Math;
 
 public class Transform {
     Vector position;
