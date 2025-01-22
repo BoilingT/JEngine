@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class EventHandler {
 
-    private HashMap<Integer, Boolean> keyEvents;
+    private final HashMap<Integer, Boolean> keyEvents;
     private KeyCallback callbackFunction;
 
     public EventHandler(){

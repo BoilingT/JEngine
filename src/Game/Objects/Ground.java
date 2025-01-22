@@ -2,6 +2,7 @@ package Game.Objects;
 
 import JEngine.Events.EventHandler;
 import JEngine.Objects.GameObject;
+import JEngine.global.JEngine;
 import Math.Transform;
 import Math.Vector;
 
@@ -28,6 +29,8 @@ public class Ground extends GameObject {
 
     @Override
     public void update(double DeltaTime) {
+        transform.position().setY(JEngine.window.getSize().height-100);
+        transform.scale().set(JEngine.window.getSize().width, 100, 0);
         rect.setFrame(transform.position().getX(), transform.position().getY(), transform.scale().getX(), transform.scale().getY());
     }
 

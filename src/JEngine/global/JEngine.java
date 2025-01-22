@@ -10,7 +10,7 @@ import java.awt.event.*;
 public abstract class JEngine {
 
     private CanvasPanel canvas;
-    private WindowHandler window;
+    public static WindowHandler window;
 
     public static EventHandler eventHandler;
     private static KeyListener keyListener;
@@ -81,6 +81,8 @@ public abstract class JEngine {
             @Override
             public void componentResized(ComponentEvent e) {
                 //canvas.setSize(window.getSize().width, window.getSize().height);
+                canvas.Draw();
+                window.repaint();
             }
 
             @Override

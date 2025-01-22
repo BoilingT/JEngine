@@ -2,6 +2,7 @@ package Game.Objects;
 
 import JEngine.Events.EventHandler;
 import JEngine.Objects.GameObject;
+import JEngine.global.JEngine;
 import Math.Transform;
 import Math.Vector;
 
@@ -56,6 +57,7 @@ public class BouncyBall extends GameObject {
 
     @Override
     public void update(double DeltaTime) {
+        groundLevel = JEngine.window.getSize().height-200;
         isGrounded = transform.position().getY() >= groundLevel-0.001f;
         if(!isGrounded) friction = 0;
         else friction = 4;
