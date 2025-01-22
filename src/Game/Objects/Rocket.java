@@ -2,14 +2,12 @@ package Game.Objects;
 
 import JEngine.Events.EventHandler;
 import JEngine.Objects.GameObject;
-import JEngine.Objects.Transform;
-import JEngine.Objects.Vector;
+import JEngine.Math.Transform;
+import JEngine.Math.Vector;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Arc2D;
 import java.awt.geom.Rectangle2D;
-import java.security.Key;
 
 public class Rocket extends GameObject {
     EventHandler eventHandler;
@@ -66,13 +64,13 @@ public class Rocket extends GameObject {
         if(eventHandler.IsKeyDown(KeyEvent.VK_W)){
             double energy = 1;
             if(eventHandler.IsKeyDown(KeyEvent.VK_SPACE)) energy=30;
-            acceleration.setY(acceleration.getY() + energy * DeltaTime);
+            //acceleration.setY(acceleration.getY() + energy * DeltaTime);
             velocity.setY(velocity.getY() + acceleration.getY() * DeltaTime);
             if(!isGrounded) {
                 if (acceleration.getY() > 0) {
-                    acceleration.setY(acceleration.getY() - 10.00f * DeltaTime);
+                    //acceleration.setY(acceleration.getY() - 10.00f * DeltaTime);
                 } else {
-                    acceleration.setY(0);
+                    //acceleration.setY(0);
                     System.out.println(acceleration.getY());
                 }
             }

@@ -1,4 +1,4 @@
-package JEngine.Objects;
+package JEngine.Math;
 
 public class Vector {
     private double x, y, z;

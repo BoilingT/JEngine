@@ -2,7 +2,7 @@ package Game;
 
 import Game.Objects.*;
 import JEngine.Objects.IGameObject;
-import JEngine.Objects.Vector;
+import JEngine.Math.Vector;
 import JEngine.global.JEngine;
 
 import java.awt.*;
