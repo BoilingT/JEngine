@@ -10,15 +10,11 @@ public class CanvasPanel extends JPanel {
 
     private int mouse_x = 0;
     private int mouse_y = 0;
-    private int width;
-    private int height;
     private Graphics graphics;
 
     public ArrayList<IGameObject> draw_queue = new ArrayList<IGameObject>();
 
     public CanvasPanel(int width, int height){
-        this.width = width;
-        this.height = height;
         System.out.println("Canvas Initialized");
     }
 
@@ -60,7 +56,7 @@ public class CanvasPanel extends JPanel {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(0, 0, width, height);
+        g2d.fillRect(0, 0, getSize().width, getSize().height);
 
         for (IGameObject obj : draw_queue){
             g2d.setColor(obj.getColor());

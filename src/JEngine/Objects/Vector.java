@@ -60,18 +60,30 @@ public class Vector {
     }
 
     public Vector add(double value){
-        return new Vector(this.x + value, this.y + value, this.z + value);
+        this.x += value;
+        this.y += value;
+        this.z += value;
+        return this;
     }
 
     public Vector add(Vector vector){
-        return new Vector(this.x + vector.getX(), this.y + vector.getY(), this.z + vector.getZ());
+        this.x += vector.getX();
+        this.y += vector.getY();
+        this.z += vector.getZ();
+        return this;
     }
 
     public Vector sub(Vector vector){
-        return new Vector(this.x - vector.getX(), this.y - vector.getY(), this.z - vector.getZ());
+        this.x -= vector.getX();
+        this.y -= vector.getY();
+        this.z -= vector.getZ();
+        return this;
     }
 
     public Vector sub(double value){
-        return new Vector(this.x - value, this.y - value, this.z - value);
+        this.x -= value;
+        this.y -= value;
+        this.z -= value;
+        return this;
     }
 }

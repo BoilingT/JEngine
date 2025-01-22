@@ -1,7 +1,7 @@
 package Game.Objects;
 
 import JEngine.Events.EventHandler;
-import JEngine.Objects.IGameObject;
+import JEngine.Objects.GameObject;
 import JEngine.Objects.Transform;
 import JEngine.Objects.Vector;
 
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Arc2D;
 
-public class BouncyBall implements IGameObject {
+public class BouncyBall extends GameObject {
 
     private EventHandler eventHandler;
 
@@ -25,6 +25,7 @@ public class BouncyBall implements IGameObject {
     private double gravity = 10.82f;
     private double friction = 50;
     private double maxSpeed = 100.f;
+    private double groundLevel = 0;
 
     public BouncyBall(Transform transform, double radius){
         this.transform = transform;
@@ -55,7 +56,7 @@ public class BouncyBall implements IGameObject {
 
     @Override
     public void update(double DeltaTime) {
-        isGrounded = transform.position().getY() >= 499.99f;
+        isGrounded = transform.position().getY() >= groundLevel-0.001f;
         if(!isGrounded) friction = 25;
         else friction = 50;
         if(true){
@@ -78,7 +79,7 @@ public class BouncyBall implements IGameObject {
             velocity.setY(velocity.getY() - gravity);
             //if(speedY > 0) speedY = 0;
         }else{
-            if(Math.abs(velocity.getY()) <= 10.f && isGrounded) velocity.setY(0);
+            if(Math.abs(velocity.getY()) <= 1.f && isGrounded) velocity.setY(0);
             else if(velocity.getY() < 0) velocity.setY(velocity.getY() * -0.8f);
         }
         if(velocity.getX() > 0){
@@ -89,9 +90,14 @@ public class BouncyBall implements IGameObject {
             if(velocity.getX() > 0) velocity.setX(0);
         }
 
+        if(transform.position().getY() > groundLevel+1) transform.position().setY(groundLevel);
         transform.position().setX(transform.position().getX() + velocity.getX() * DeltaTime);
         transform.position().setY(transform.position().getY() - velocity.getY() * DeltaTime);
         arc.setFrame(transform.position().getX(), transform.position().getY(), 100, 100);
+    }
+
+    public void setGroundLevel(double level){
+        this.groundLevel = level;
     }
 
     @Override

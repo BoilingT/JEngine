@@ -5,21 +5,28 @@ import JEngine.Events.KeyCallback;
 import JEngine.Graphics.CanvasPanel;
 import JEngine.Window.WindowHandler;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
-public class JEngine {
+public abstract class JEngine {
 
-    public static CanvasPanel canvas;
+    private CanvasPanel canvas;
     private WindowHandler window;
+
+    public static EventHandler eventHandler;
+    private static KeyListener keyListener;
+    private static ComponentListener componentListener;
+    private static MouseMotionListener mouseMotionListener;
 
     private double DeltaTime = 0;
     private double FixedDeltaTime = 1000;
     private int FPS = 0;
+
+    private double mousex = 0;
+    private double mousey = 0;
+
     private static boolean windowShouldClose = false;
     private boolean Running = false;
-    public static EventHandler eventHandler;
-    private static KeyListener keyListener;
+
 
     public double GetFixedDeltaTime(){
         return FixedDeltaTime;
@@ -31,6 +38,18 @@ public class JEngine {
 
     public int GetFramesPerSecond(){
         return FPS;
+    }
+
+    public CanvasPanel getCanvas(){
+        return canvas;
+    }
+
+    public double getMousex() {
+        return mousex;
+    }
+
+    public double getMousey() {
+        return mousey;
     }
 
     public JEngine(){
@@ -58,6 +77,43 @@ public class JEngine {
         };
         window.addKeyListener(keyListener);
 
+        componentListener = new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                //canvas.setSize(window.getSize().width, window.getSize().height);
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) {
+
+            }
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+
+            }
+
+            @Override
+            public void componentHidden(ComponentEvent e) {
+
+            }
+        };
+        window.addComponentListener(componentListener);
+
+        mouseMotionListener = new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                mouseMoved(e);
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                mousex = e.getX();
+                mousey = e.getY();
+            }
+        };
+        window.addMouseMotionListener(mouseMotionListener);
+
         eventHandler.SetKeyCallback(new KeyCallback(){
             @Override
             public void process(){
@@ -72,7 +128,7 @@ public class JEngine {
             }
         });
 
-        canvas = new CanvasPanel(700, 700);
+        canvas = new CanvasPanel(window.getSize().width, window.getSize().height);
 
         System.out.println("Adding panels");
         window.add(canvas);
@@ -100,15 +156,15 @@ public class JEngine {
 
             // FPS = F / S
             //
-            if((timePassedUpdate += DeltaTime) >= 1000.f/144.f){
+            Update(DeltaTime/1000);
+            if((timePassedUpdate += DeltaTime) >= 1000.f/180.f){
                 if(Running){
-                    Update(timePassedUpdate/1000);
                     canvas.Draw();
                     window.repaint();
                 }
                 //System.out.println(frames/timePassedFixedUpdate);
                 //System.out.println(1/(timePassedUpdate/1000));
-                FPS = (int)(frames/timePassedFixedUpdate);
+                FPS = (int)(1000.f/timePassedUpdate);
                 frames = 0;
                 timePassedUpdate = 0;
             }
@@ -145,7 +201,7 @@ public class JEngine {
         if(eventHandler.IsKeyDown(KeyEvent.VK_PAUSE)) if(isRunning()) Pause();
     }
 
-    public void Init(){}
-    public void Update(double DeltaTime){}
-    public void FixedUpdate(double FixedDeltaTime){}
+    public abstract void Init();
+    public abstract void Update(double DeltaTime);
+    public abstract void FixedUpdate(double FixedDeltaTime);
 }

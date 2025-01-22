@@ -1,14 +1,14 @@
 package Game.Objects;
 
 import JEngine.Events.EventHandler;
-import JEngine.Objects.IGameObject;
+import JEngine.Objects.GameObject;
 import JEngine.Objects.Transform;
 import JEngine.Objects.Vector;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-public class Ground implements IGameObject {
+public class Ground extends GameObject {
 
     private Rectangle2D rect;
 
