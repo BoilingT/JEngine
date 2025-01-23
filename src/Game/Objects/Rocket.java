@@ -37,7 +37,7 @@ public class Rocket extends GameObject {
     public Rocket(Vector position){
         fillColor = new Color(220, 223, 242);
         transform = new Transform(position);
-        acceleration = new Vector(20.f, 50, 0);
+        acceleration = new Vector(20.f, 10, 0);
         velocity = new Vector();
         direction = new Vector();
         mouse = new Vector(0);
@@ -64,16 +64,16 @@ public class Rocket extends GameObject {
         if(eventHandler.IsKeyDown(KeyEvent.VK_W)){
             double energy = 1;
             if(eventHandler.IsKeyDown(KeyEvent.VK_SPACE)) energy=30;
-            //acceleration.setY(acceleration.getY() + energy * DeltaTime);
+            acceleration.setY(acceleration.getY() + energy * DeltaTime);
             velocity.setY(velocity.getY() + acceleration.getY() * DeltaTime);
-            if(!isGrounded) {
-                if (acceleration.getY() > 0) {
-                    //acceleration.setY(acceleration.getY() - 10.00f * DeltaTime);
-                } else {
-                    //acceleration.setY(0);
-                    System.out.println(acceleration.getY());
-                }
+        }
+        if(!isGrounded && (eventHandler.IsKeyDown(KeyEvent.VK_D) || eventHandler.IsKeyDown(KeyEvent.VK_A) || eventHandler.IsKeyDown(KeyEvent.VK_W))) {
+            if (acceleration.getY() > 0) {
+                acceleration.setY(acceleration.getY() - 10.00f * DeltaTime);
+            } else {
+                acceleration.setY(0);
             }
+            //System.out.println(acceleration.getY());
         }
 
         //System.out.println(mouse.sub(transform.position()).length2D());
