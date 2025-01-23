@@ -21,35 +21,29 @@ public class Ground extends GameObject {
         fillColor = color;
     }
 
-    @Override
     public void init() {
         rect = new Rectangle2D.Double();
         rect.setFrame(transform.position().getX(), transform.position().getY(), transform.scale().getX(), transform.scale().getY());
     }
 
-    @Override
     public void update(double DeltaTime) {
         transform.position().setY(JEngine.window.getSize().height-100);
         transform.scale().set(JEngine.window.getSize().width, 100, 0);
         rect.setFrame(transform.position().getX(), transform.position().getY(), transform.scale().getX(), transform.scale().getY());
     }
 
-    @Override
     public void setEventHandler(EventHandler eventHandler) {
 
     }
 
-    @Override
     public Transform getTransform() {
         return transform;
     }
 
-    @Override
     public Shape getShape() {
         return rect;
     }
 
-    @Override
     public Color getColor() {
         return fillColor;
     }

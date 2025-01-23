@@ -55,8 +55,8 @@ public class CanvasPanel extends JPanel {
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.setColor(Color.BLACK);
-        g2d.fillRect(0, 0, getSize().width, getSize().height);
+        //g2d.setColor(Color.BLACK);
+        //g2d.fillRect(0, 0, getSize().width, getSize().height);
 
         for (IGameObject obj : draw_queue){
             g2d.setColor(obj.getColor());

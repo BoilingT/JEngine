@@ -142,7 +142,13 @@ public abstract class JEngine {
 
     public void Run(){
         Running = true;
-        Init();
+        try{
+            Init();
+        }catch (Exception e){
+            System.out.println("\u001B[31m" + e.getMessage() + "\u001B[0m");
+            //e.printStackTrace();
+            Stop();
+        }
 
         long prevTime = System.nanoTime();
         long frames = 0;
@@ -158,12 +164,12 @@ public abstract class JEngine {
 
             // FPS = F / S
             //
-            Update(DeltaTime/1000);
+            if(Running){
+                Update(DeltaTime/1000);
+            }
             if((timePassedUpdate += DeltaTime) >= 1000.f/180.f){
-                if(Running){
                     canvas.Draw();
                     window.repaint();
-                }
                 //System.out.println(frames/timePassedFixedUpdate);
                 //System.out.println(1/(timePassedUpdate/1000));
                 FPS = (int)(1000.f/timePassedUpdate);
@@ -185,17 +191,11 @@ public abstract class JEngine {
         window.Close();
     }
 
-    public void Pause(){
-        Running = false;
-    }
+    public void Pause(){ Running = false; }
 
-    public void Stop(){
-        windowShouldClose = true;
-    }
+    public void Stop(){ windowShouldClose = true; }
 
-    public boolean isRunning(){
-        return Running;
-    }
+    public boolean isRunning(){ return Running; }
 
     private void ProcessInput(){
         //System.out.println("Key Down");

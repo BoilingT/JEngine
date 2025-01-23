@@ -35,7 +35,7 @@ public class Rocket extends GameObject {
     private double mouseY = 0;
 
     public Rocket(Vector position){
-        fillColor = Color.BLUE;
+        fillColor = new Color(220, 223, 242);
         transform = new Transform(position);
         acceleration = new Vector(20.f, 50, 0);
         velocity = new Vector();
@@ -43,12 +43,10 @@ public class Rocket extends GameObject {
         mouse = new Vector(0);
     }
 
-    @Override
     public void init() {
         rect = new Rectangle2D.Double();
     }
 
-    @Override
     public void update(double DeltaTime) {
         groundLevel = JEngine.window.getSize().height-200;
 
@@ -122,22 +120,18 @@ public class Rocket extends GameObject {
         this.acceleration = acceleration;
     }
 
-    @Override
     public void setEventHandler(EventHandler eventHandler) {
         this.eventHandler = eventHandler;
     }
 
-    @Override
     public Transform getTransform() {
         return transform;
     }
 
-    @Override
     public Shape getShape() {
         return rect;
     }
 
-    @Override
     public Color getColor() {
         return fillColor;
     }

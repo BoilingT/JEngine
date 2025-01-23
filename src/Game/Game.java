@@ -22,7 +22,8 @@ public class Game extends JEngine {
     }
 
     public void Init(){
-        Ground ground = new Ground(new Vector(0,600,0), Color.GRAY);
+
+        Ground ground = new Ground(new Vector(0,600,0), new Color(35, 41, 84));
         ground.getTransform().scale().set(700, 100, 0);
 
         Rocket rocket = new Rocket(new Vector(0, 100, 0));
@@ -31,6 +32,7 @@ public class Game extends JEngine {
         BouncyBall ball = new BouncyBall(350-50, 0, 50);
         ball.setAcceleration(new Vector(20.f, 10, 0));
 
+        gameObjects.add(new Background());
         gameObjects.add(ground);
         gameObjects.add(rocket);
         //gameObjects.add(ball);
@@ -54,6 +56,6 @@ public class Game extends JEngine {
 
     public void FixedUpdate(double FixedDeltaTime){
         //System.out.println("X: " + rocket.getTransform().position().getX() + ", Y: " + rocket.getTransform().position().getY() + ", speedY: " + rocket.getVelocity().getY());
-        System.out.println("FPS: " + GetFramesPerSecond());
+        //System.out.println("FPS: " + GetFramesPerSecond());
     }
 }

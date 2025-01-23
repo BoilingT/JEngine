@@ -43,7 +43,6 @@ public class BouncyBall extends GameObject {
         this.radius = radius;
     }
 
-    @Override
     public void init() {
 
         // Arc
@@ -55,7 +54,6 @@ public class BouncyBall extends GameObject {
         arc.setFrame(position.getX(), position.getY(), 100, 100);
     }
 
-    @Override
     public void update(double DeltaTime) {
         groundLevel = JEngine.window.getSize().height-200;
         isGrounded = transform.position().getY() >= groundLevel-0.001f;
@@ -102,12 +100,10 @@ public class BouncyBall extends GameObject {
         this.groundLevel = level;
     }
 
-    @Override
     public void setEventHandler(EventHandler eventHandler) {
         this.eventHandler = eventHandler;
     }
 
-    @Override
     public Transform getTransform() {
         return transform;
     }
@@ -128,12 +124,10 @@ public class BouncyBall extends GameObject {
         this.acceleration = acceleration;
     }
 
-    @Override
     public Shape getShape() {
         return arc;
     }
 
-    @Override
     public Color getColor() {
         return fillColor;
     }
